@@ -1,5 +1,52 @@
 import { useState } from 'react'
 function TodoApp() {
+    const [todos, setTodos] = useState([])
+    const [newTodo, setNewTodo] = useState('')
+  
+ 
+    function addTodo() {
+      if (newTodo.trim() !== '') {
+        const newTodoItem = {
+          id: todos.length + 1,
+          text: newTodo,
+          completed: false
+        };
+        setTodos([...todos, newTodoItem])
+        setNewTodo('')
+      }
+    }
+  
+   
+    function completeTodo(id) {
+      setTodos(
+        todos.map((todo) => {
+          if (todo.id === id) {
+            return { ...todo, completed: !todo.completed }
+          }
+          return todo
+        })
+      );
+    }
+  
+    
+    function deleteTodo(id) {
+      setTodos(todos.filter((todo) => todo.id !== id))
+    }
+  
+    function editTodo(id, newText) {
+        setTodos(
+          todos.map((todo) => {
+            if (todo.id === id) {
+              return { ...todo, text: newText };
+            }
+            return todo;
+          })
+        );
+      }
+  
+    return (
+      <div>
+        <h1>Todo App</h1>
   
         <form
           onSubmit={(event) => {
@@ -26,7 +73,7 @@ function TodoApp() {
               <button onClick={() => deleteTodo(todo.id)}>Delete</button>
               <button
                 onClick={() =>
-                  editTodo(todo.id, prompt('Edit todo:', todo.text))
+                  editTodo(todo.id, prompt('Edit:', todo.text))
                 }
               >
                 Edit
