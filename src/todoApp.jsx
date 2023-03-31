@@ -33,7 +33,7 @@ function TodoApp() {
       setTodos(todos.filter((todo) => todo.id !== id))
     }
   
-    function editTodo(id, newText) {
+    function editTD(id, newText) {
         setTodos(
           todos.map((todo) => {
             if (todo.id === id) {
@@ -73,7 +73,7 @@ function TodoApp() {
               <button onClick={() => deleteTodo(todo.id)}>Delete</button>
               <button
                 onClick={() =>
-                  editTodo(todo.id, prompt('Edit:', todo.text))
+                  editTD(todo.id, prompt('Edit:', todo.text))
                 }
               >
                 Edit
