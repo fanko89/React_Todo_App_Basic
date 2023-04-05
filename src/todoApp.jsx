@@ -1,4 +1,5 @@
 import { useState } from 'react'
+//study usedState more
 function TodoApp() {
     const [todos, setTodos] = useState([])
     const [newTodo, setNewTodo] = useState('')
@@ -29,7 +30,7 @@ function TodoApp() {
     }
   
     
-    
+
     function deleteTodo(id) {
       setTodos(todos.filter((todo) => todo.id !== id))
     }
